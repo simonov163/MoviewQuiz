@@ -57,10 +57,10 @@ final class MovieQuizViewController: UIViewController {
         
         questionTitleLabel.text = "Вопрос:"
         questionTitleLabel.textColor = .myWhite
-        questionTitleLabel.font = .systemFont(ofSize: 20, weight: .medium)
+        questionTitleLabel.font = UIFont(name: "YSDisplay-Medium", size: 20)
         
         indexLabel.textColor = .myWhite
-        indexLabel.font = .systemFont(ofSize: 20, weight: .medium)
+        indexLabel.font = UIFont(name: "YSDisplay-Medium", size: 20)
         
         filmImage.layer.cornerRadius = 15
         filmImage.contentMode = .scaleAspectFill
@@ -69,7 +69,7 @@ final class MovieQuizViewController: UIViewController {
         questionLabel.textColor = .myWhite
         questionLabel.textAlignment = .center
         questionLabel.numberOfLines = 2
-        questionLabel.font = .systemFont(ofSize: 23, weight: .bold)
+        questionLabel.font = UIFont(name: "YSDisplay-Bold", size: 23)
         
         setupButton(for: noButton, title: "Нет")
         setupButton(for: yesButton, title: "Да")
@@ -125,6 +125,8 @@ final class MovieQuizViewController: UIViewController {
         filmImage.layer.masksToBounds = true
         filmImage.layer.borderWidth = 8
         filmImage.layer.borderColor = isCorrect ? UIColor.myGreen.cgColor : UIColor.myRed.cgColor
+        noButton.isEnabled = false
+        yesButton.isEnabled = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.showNextQuestionOrResults()
@@ -145,6 +147,8 @@ final class MovieQuizViewController: UIViewController {
           let viewModel = convert(model: nextQuestion)
           show(quiz: viewModel)
       }
+        noButton.isEnabled = true
+        yesButton.isEnabled = true
     }
     
     @IBAction private func noButtonDidTap(_ sender: Any) {
